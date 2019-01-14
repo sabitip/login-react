@@ -13,7 +13,7 @@ class App extends Component {
             <Route exact path="/" component={Netlog} />
             <Route path="/admin" component={NetlogAdmin} />
             <Route component={PNF} />
-          </Switch>
+      </Switch>
     );
   }
 }
