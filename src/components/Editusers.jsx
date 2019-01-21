@@ -64,8 +64,8 @@ submitEdituser = async (event) => {
     if(this.state.edituser.users_password == ''){
         delete this.state.edituser.users_password;
     }
-    this.state.edituser.Apikey = 'NetLogApi'
-    this.state.edituser.fn = 'Update',
+    this.state.edituser.Apikey = 'NetLogApi';
+    this.state.edituser.fn = 'Update';
     this.state.edituser.users_name_old = this.props.match.params.users_name;
 
 
