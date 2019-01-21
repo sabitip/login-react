@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Adminheader from './components/Adminheader';
 import Welcomeuser from './components/Welcomeuser';
 import Manageusers from './components/Manageusers';
+import Editusers from './components/Editusers';
 import { Switch, Route } from 'react-router-dom';
 
 
@@ -23,6 +24,7 @@ return (
         <Switch>
             <Route exact path="/admin" component={Welcomeuser} />
             <Route path="/admin/users" component={Manageusers} />
+            <Route path="/admin/editusers/:users_name" component={Editusers} />
         </Switch>
     </div>
 </div>
