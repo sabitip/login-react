@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 class Editusers extends Component {
 
 state = {
-edituser:{}
+edituser:{},
+submit_form: ''
 }
 
 async componentDidMount() {
@@ -59,25 +60,38 @@ users_email_Change = (event) => {
     this.setState({edituser: data});
 }
 
-submitEdituser = async (event) => {
-    event.preventDefault();
-    if(this.state.edituser.users_password == ''){
-        delete this.state.edituser.users_password;
-    }
-    this.state.edituser.Apikey = 'NetLogApi';
-    this.state.edituser.fn = 'Update';
-    this.state.edituser.users_name_old = this.props.match.params.users_name;
-
-
-    let result = await 
-    axios.post('http://localhost/netlogapi/users.php',this.state.edituser);
-
-    if(result.data == true){
-        window.location.replace('/admin/users');
-    }
-
+submit_form_click = (event) => {
+      this.setState({submit_form: event.target.value});
 }
 
+
+
+submitEdituser = async (event) => {
+    event.preventDefault();
+
+    if(this.state.submit_form == 'Save'){
+        if(this.state.edituser.users_password == ''){
+            delete this.state.edituser.users_password;
+        }
+        this.state.edituser.Apikey = 'NetLogApi';
+        this.state.edituser.fn = 'Update';
+        this.state.edituser.users_name_old = this.props.match.params.users_name;
+
+
+        let result = await 
+        axios.post('http://localhost/netlogapi/users.php',this.state.edituser);
+
+        if(result.data == true){
+            alert('Saved');
+
+        }else{
+            alert('Saved Mistake');
+        }
+        window.location.replace('#/admin/users');
+    } else{
+        window.location.replace('#/admin/users');
+    }
+}
 
 render() {
 return (
@@ -165,9 +179,9 @@ return (
                     </div>
 
                     <div className="row">
-                    <input type="submit" id="save_bt" name="save_bt" value="Save" className="btn btn-success btn-lg col-md-5 mx-auto" />
+                    <input type="submit" id="save_bt" name="save_bt" value="Save" className="btn btn-success btn-lg col-md-5 mx-auto" onClick={ this.submit_form_click } />
 
-                    <input type="submit" id="cancle_bt" name="cancle_bt" value="Cancle" className="btn btn-secondary btn-lg col-md-5 mx-auto" />
+                    <input type="submit" id="cancle_bt" name="cancle_bt" value="Cancle" className="btn btn-secondary btn-lg col-md-5 mx-auto" onClick={ this.submit_form_click } />
                     </div>
 
 

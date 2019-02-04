@@ -49,11 +49,11 @@ submitLogin = async (event) => {
             delete user.users_password;
             sessionStorage.setItem('loginuser', JSON.stringify(user));
             if (user.users_status === 'admin'){
-                window.location.replace('/admin')
+                window.location.replace('#/admin')
             }
 
             else if (user.users_status === 'user'){
-                window.location.replace('/user')
+                window.location.replace('#/user')
             }
     
       }
